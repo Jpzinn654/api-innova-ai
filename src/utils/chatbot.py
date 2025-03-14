@@ -21,10 +21,10 @@ def create_vectorstore(chunks):
 
 def create_conversation_chain(vectorstore):
     llm = HuggingFaceEndpoint(
-        repo_id="google/flan-t5-large", 
+        repo_id="google/gemma-3-1b-it", 
         task='text-generation',
         temperature=0.1,
-        model_kwargs={"max_length": 512}
+        # model_kwargs={"max_length": 512}
     )
 
     memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
