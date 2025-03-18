@@ -21,17 +21,17 @@ def create_vectorstore(chunks):
 
 def create_conversation_chain(vectorstore):
     llm = HuggingFaceEndpoint(
-        repo_id="google/gemma-3-1b-it", 
-        task='text-generation',
-        temperature=0.1,
-        # model_kwargs={"max_length": 512}
+        repo_id="Qwen/QwQ-32B", 
+        task='question-answering',
+        temperature=0.2,
+        max_new_tokens=200
     )
 
     memory = ConversationBufferMemory(memory_key='chat_history', return_messages=True)
 
     question_prompt = PromptTemplate(
         template="""
-        Você é um assistente virtual especializado em direito trabalhista. Sua função é responder perguntas e fornecer explicações detalhadas utilizando exclusivamente as informações extraídas dos documentos PDF carregados, que contêm leis trabalhistas. Siga estas regras rigorosamente:
+        Você é um assistente virtual especializado em direito trabalhista. Seu nome é InnovaAI Sua função é responder perguntas e fornecer explicações detalhadas utilizando exclusivamente as informações extraídas dos documentos PDF carregados, que contêm leis trabalhistas. Siga estas regras rigorosamente:
 
         1. **Responda SEMPRE em português.**
         2. Seja objetivo e claro em suas respostas. Evite informações desnecessárias e repetições.
